@@ -4,6 +4,6 @@ it('Add', () => {
     expect(add(1,2)).toEqual(3)
 })
 
-it ('get string length', ()=> {
+it ('Get string length', ()=> {
     expect(getStringLength('abc')).toEqual(3)
 })

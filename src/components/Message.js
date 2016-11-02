@@ -2,6 +2,7 @@ import React from 'react';
 import './Message.css';
 
 export default class Message extends React.Component {
+    
     constructor() {
         super()
         this.state = {
@@ -9,7 +10,7 @@ export default class Message extends React.Component {
         }
     }
 
-    click() {
+    toggleLike() {
         this.setState({
             liked: !this.state.liked
         })
@@ -19,8 +20,10 @@ export default class Message extends React.Component {
         return (
             <div className={this.state.liked ? 'liked' : 'disliked'}>
                 <h1>{this.props.title}</h1>
+
                 <span id="bodyText">{this.props.body}</span>
-                <button id="likeButton" onClick={this.click.bind(this)}>
+
+                <button id="likeButton" onClick={this.toggleLike.bind(this)}>
                     {!this.state.liked ? '👍' : '👎'}
                 </button>
             </div>

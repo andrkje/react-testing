@@ -12,25 +12,25 @@ it('Renders without any errors', () => {
         shallow(
             <Message {...messageProps} />
         ).length
-    ).toEqual(1)
+    ).toEqual(1)    // Would have length 0 if Message failed to render
 })
 
-describe('Message contains correct information', () => {
-    it('contains correct title', () => {
+describe('Message contains correct information upon rendering', () => {
+    it('Contains correct title', () => {
         const wrapper = shallow(<Message {...messageProps}/>)
         expect(
             wrapper.find('h1').text()
         ).toEqual('title')
     })
 
-    it('contains correct body', () => {
+    it('Contains correct body', () => {
         const wrapper = shallow(<Message {...messageProps}/>)
         expect(
             wrapper.find('#bodyText').text()
         ).toEqual('body')
     })
 
-    it('is liked by default button', () => {
+    it('Is liked by default button', () => {
         const wrapper = shallow(<Message {...messageProps}/>)
         expect(
             expect(
@@ -39,7 +39,7 @@ describe('Message contains correct information', () => {
         )
     })
 
-    it('is liked by default css', () => {
+    it('Has liked css class', () => {
         const wrapper = shallow(<Message {...messageProps}/>)
         expect(
             wrapper.find('div').hasClass('liked')
@@ -48,17 +48,16 @@ describe('Message contains correct information', () => {
 })
 
 
-describe('dislike', () => {
-    it('dislike ', () => {
-        const wrapper = shallow(<Message/>)
+it('Dislike click change button symbol to like and change css class to disliked ', () => {
+    const wrapper = shallow(<Message/>)
 
-        wrapper.find('#likeButton').simulate('click')
+    wrapper.find('#likeButton').simulate('click')   // Simulates that the button is clicked
 
-        expect(
-            wrapper.find('#likeButton').text()
-        ).toEqual('👍')
-        expect(
-            wrapper.find('div').hasClass('disliked')
-        ).toEqual(true)
-    })
+    expect(
+        wrapper.find('#likeButton').text()
+    ).toEqual('👍')
+
+    expect(
+        wrapper.find('div').hasClass('disliked')
+    ).toEqual(true)
 })

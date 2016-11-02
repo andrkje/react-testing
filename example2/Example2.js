@@ -11,10 +11,14 @@ export default class BankAccount {
     }
 
     withdraw(amount) {
-        if (amount < 0 || this._tooLargeWithdrawalAmount(amount)) {
+        if (!this._isValidWithdrawalAmount(amount)) {
             throw 'Invalid amount'
         }
         this.balance -= amount
+    }
+
+    _isValidWithdrawalAmount(amount) {
+        return amount >= 0 && !this._tooLargeWithdrawalAmount(amount)
     }
 
     _tooLargeWithdrawalAmount(amount) {
